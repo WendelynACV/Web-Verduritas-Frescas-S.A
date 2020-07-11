@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    /*box-sizing: border-box;*/
+}
+/**/
+/*h1 {
+    background-color:rgba(246, 252, 164);
+    margin: 20px, 50px; /*El primero es el margen de arriba y abajo, el segundo marca los margenes de los lados*/
+
+body{
+    background: #e6e6e6; 
+    background:url(../imagenes/zanahoria.jpg);
+    background-repeat: no-repeat;
+    width: 90%;
+    max-width: 1000px;
+}
+
+header, .main, footer{
+    /* background: #fff;*/
+    width: 90%; /*90%*/
+    max-width: 1000px;
+    margin: 20px auto;   
+}
+
+header div{
+    background: url(../imagenes/vegetales.png);
+    background-color: rgba(0, 255, 0, 0.527);
+    background-repeat: no-repeat;
+    
+}
+
+header nav{
+    background: #528fd5; /*#528fd5;*/
+    overflow: hidden;
+}
+
+header nav ul{
+    list-style: none;
+}
+
+header nav ul li{
+    float: left;
+}
+ 
+header nav ul li a{
+    padding: 10px 20px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav ul li a:hover{
+    background: #75acec;
+}
+.main .articles{
+    width: 68.5%;
+    margin-right: 1.5%;
+    float: left;
+    /*background-color: bisque;*/
+}
+
+.main .articles article{
+    padding: 20px;
+    background: #fff;
+    margin-bottom: 20px;
+}
+.main .articles .contenedorCedula {
+    background-color: rgba(109, 201, 109, 0.527); /*Usar color en ese formato ayuda a que tenga transparencia*/
+}    
+
+aside {
+    width: 30%;
+    background: #ff9945;
+    float: left;
+    padding: 20px;
+    box-sizing: border-box;
+}
+footer{
+    background: #000;
+    color: #fff;
+    clear: both;
+    padding: 10px 0px;
+    text-align: center;
+}
