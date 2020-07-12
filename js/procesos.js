@@ -98,6 +98,29 @@ function validarInventario(evento){
     if(cantidadInventario < cantidadAComprar){
         alert("No contamos con la cantidad del producto que requiere");
         evento.value="";
+    }    
+}
+
+function desplegarProductosSeleccionados(){ 
+    var productosAComprar=[];
+    var productos = document.querySelectorAll('.items'); /*Con document.querySelectorAll trae todos los productos del HTML*/
+
+    for(let i=0; i<productos.length; i++){
+        var descripcion, precio;
+        var cantidadAComprar= parseInt(productos[i].querySelector("input").value);
+        if(cantidadAComprar && cantidadAComprar!=NaN && cantidadAComprar>0){
+            descripcion= productos[i].querySelector(".desc").innerHTML;
+            precio= productos[i].querySelector(".price").innerHTML;
+            productosAComprar.push({cantidad:cantidadAComprar, descripcion: descripcion, precio: precio});
+        }
+
     }
-    
+
+    if(productosAComprar.length === 0) {
+        alert("No ha especificado ninguna cantidad de producto a comprar");
+    } else {
+        document.getElementById("contenedorProductos").style.display = "none";
+        document.getElementById("tablaProductosAComprar").style.display = "inline";
+    }
+
 }
