@@ -1,3 +1,4 @@
+var costoTotal= 0;
 
 function verificarCedula(){
     var cedula = document.getElementById("cedula").value; /*Con document get obtengo lo que ingresa el usuario en la funcion*/
@@ -108,8 +109,15 @@ function actualizarResumenDePedido(productosAComprar){
     productosAComprar.forEach(producto =>{
         productos+= '<tr><td>'+producto.cantidad+'</td><td>'+producto.descripcion+'</td><td>'+producto.precio+'</td><td>'+producto.subTotal+'</td><td>'+producto.descuento+'</td><td>'+producto.iva+'</td></tr>';
     });
+
+    productos +='<tr><td>Total</td><td></td><td></td><td></td><td></td><td>'+costoTotal+'</td></tr>';
+
     document.getElementById("datos").innerHTML = productos;
 
+}
+
+function enviarPedido(){
+    alert("El pedido por el monto de"+costoTotal+" ha sido enviado");
 }
 
 function desplegarProductosSeleccionados(){ 
@@ -129,15 +137,24 @@ function desplegarProductosSeleccionados(){
 
     console.log(productosAComprar);
     console.log(calcularIvaYDescuento(productosAComprar));
-
+    
     if(calcularTotalProductosAComprar(productosAComprar) === 0) {
         alert("No ha especificado ninguna cantidad de producto a comprar");
     } else {
         document.getElementById("contenedorProductos").style.display = "none";
         document.getElementById("tablaProductosAComprar").style.display = "inline";
         var calculoIvaYDescuento = calcularIvaYDescuento(productosAComprar); /*Lo que retorna la función se guarda en la variable calculoIvaYDescuento*/
+        costoTotal = calcularCostoTotal(calculoIvaYDescuento);
         actualizarResumenDePedido(calculoIvaYDescuento);
     }
+}
+
+function calcularCostoTotal(productosDeCompra){
+    var costoTotal=0;
+    for(let i=0; i<productosDeCompra.length; i++){
+        costoTotal += productosDeCompra[i].iva;
+    }
+    return costoTotal.toFixed(2);
 }
 
 function calcularTotalProductosAComprar(cantidadProductosAComprar){
