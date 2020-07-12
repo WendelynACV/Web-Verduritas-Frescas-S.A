@@ -89,7 +89,7 @@ function desplegarProductos(){
         productos += '<div id="item'+producto.idDelProducto+'" class="items"><img src="'+producto.imagen+'"/> <span class="id">'+producto.idDelProducto+'</span> <span class="desc">'+producto.descripcion+'</span> <span class="price">'+producto.costoUnidad+'</span> <span class="inv"> '+producto.cantidadEnInventario+'</span> <span class="exp">'
         +producto.fechaDeExpiracion+'</span><input type="number" onchange="validarInventario(this)"/> </div>'; /*onchange detecta cada cambio que pasa en el input, se activa y llama la función "validarInventario" con el atributo this con toda la info que hay en etiqueta input*/
     }); 
-    document.getElementById("items").innerHTML = productos;  /*Con el selector innerHTML extraigo los elementos o texto que se encuentren adentro*/
+    document.getElementById("items").innerHTML = productos;  /*Con el selector innerHTML extraigo o sutituyo los elementos o texto que se encuentren adentro, acá los sustituye*/
 }
 
 function validarInventario(evento){
@@ -100,6 +100,16 @@ function validarInventario(evento){
         alert("No contamos con la cantidad del producto que requiere");
         evento.value="";
     }    
+}
+
+/*Creación de la tabla del resumen para el cliente*/
+function actualizarResumenDePedido(productosAComprar){
+    var productos = "";
+    productosAComprar.forEach(producto =>{
+        productos+= '<tr><td>'+producto.cantidad+'</td><td>'+producto.descripcion+'</td><td>'+producto.precio+'</td><td>'+producto.subTotal+'</td><td>'+producto.descuento+'</td><td>'+producto.iva+'</td></tr>';
+    });
+    document.getElementById("datos").innerHTML = productos;
+
 }
 
 function desplegarProductosSeleccionados(){ 
@@ -119,11 +129,14 @@ function desplegarProductosSeleccionados(){
 
     console.log(productosAComprar);
     console.log(calcularIvaYDescuento(productosAComprar));
+
     if(calcularTotalProductosAComprar(productosAComprar) === 0) {
         alert("No ha especificado ninguna cantidad de producto a comprar");
     } else {
         document.getElementById("contenedorProductos").style.display = "none";
         document.getElementById("tablaProductosAComprar").style.display = "inline";
+        var calculoIvaYDescuento = calcularIvaYDescuento(productosAComprar); /*Lo que retorna la función se guarda en la variable calculoIvaYDescuento*/
+        actualizarResumenDePedido(calculoIvaYDescuento);
     }
 }
 
