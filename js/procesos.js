@@ -11,7 +11,7 @@ function verificarCedula(){
     }
 }
 
-
+/*Creación del array de productos de la verduleria*/
 var productosVF =[
     {
         idDelProducto: 1,  imagen: "imagenes/aguacate.jpg", descripcion: "Aguacate", costoUnidad:400, cantidadEnInventario:30,
@@ -86,13 +86,14 @@ var productosVF =[
 function desplegarProductos(){
     var productos = "";
     productosVF.forEach(producto => {
-        productos += '<div id="item'+producto.idDelProducto+'" class="items"><img src="'+producto.imagen+'"/> <span class="id">'+producto.idDelProducto+'</span> <span class="desc">'+producto.descripcion+'</span> <span class="price">'+producto.costoUnidad+'</span> <span class="inv"> '+producto.cantidadEnInventario+'</span> <span class="exp">'+producto.fechaDeExpiracion+'</span><input type="number" onchange="validarInventario(this)"/> </div>';
+        productos += '<div id="item'+producto.idDelProducto+'" class="items"><img src="'+producto.imagen+'"/> <span class="id">'+producto.idDelProducto+'</span> <span class="desc">'+producto.descripcion+'</span> <span class="price">'+producto.costoUnidad+'</span> <span class="inv"> '+producto.cantidadEnInventario+'</span> <span class="exp">'
+        +producto.fechaDeExpiracion+'</span><input type="number" onchange="validarInventario(this)"/> </div>'; /*onchange detecta cada cambio que pasa en el input, se activa y llama la función "validarInventario" con el atributo this con toda la info que hay en etiqueta input*/
     }); 
-    document.getElementById("items").innerHTML = productos;
+    document.getElementById("items").innerHTML = productos;  /*Con el selector innerHTML extraigo los elementos o texto que se encuentren adentro*/
 }
 
 function validarInventario(evento){
-    var cantidadInventario = parseInt(document.querySelector("#"+evento.parentNode.id+" .inv").innerHTML);
+    var cantidadInventario = parseInt(document.querySelector("#"+evento.parentNode.id+" .inv").innerHTML); /*parentNode es el nodo padre*/
     var cantidadAComprar = evento.value; /*Extrae el valor actual que posee el input*/
     
     if(cantidadInventario < cantidadAComprar){
@@ -108,19 +109,49 @@ function desplegarProductosSeleccionados(){
     for(let i=0; i<productos.length; i++){
         var descripcion, precio;
         var cantidadAComprar= parseInt(productos[i].querySelector("input").value);
-        if(cantidadAComprar && cantidadAComprar!=NaN && cantidadAComprar>0){
+        /*En el if colocamos la cantidadAComprar sola significa que la variable este defina, si uso cantidadAComprar!=NaN, != NAN, es que sea diferente de indefinido, que viene siendo lo mismo*/
+        if(cantidadAComprar  && cantidadAComprar>0){ 
             descripcion= productos[i].querySelector(".desc").innerHTML;
-            precio= productos[i].querySelector(".price").innerHTML;
-            productosAComprar.push({cantidad:cantidadAComprar, descripcion: descripcion, precio: precio});
+            precio= parseInt(productos[i].querySelector(".price").innerHTML);
+            productosAComprar.push({cantidad:cantidadAComprar, descripcion: descripcion, precio: precio, subTotal:(precio*cantidadAComprar), descuento: 0, iva:0});
         }
-
     }
 
-    if(productosAComprar.length === 0) {
+    console.log(productosAComprar);
+    console.log(calcularIvaYDescuento(productosAComprar));
+    if(calcularTotalProductosAComprar(productosAComprar) === 0) {
         alert("No ha especificado ninguna cantidad de producto a comprar");
     } else {
         document.getElementById("contenedorProductos").style.display = "none";
         document.getElementById("tablaProductosAComprar").style.display = "inline";
     }
-
 }
+
+function calcularTotalProductosAComprar(cantidadProductosAComprar){
+    var cantidadAComprarTotal=0;
+    for(let i=0; i<cantidadProductosAComprar.length; i++){
+        cantidadAComprarTotal += cantidadProductosAComprar[i].cantidad;  
+    }
+    console.log(cantidadAComprarTotal);
+    return cantidadAComprarTotal;
+}
+
+function calcularIvaYDescuento(productosDeCompra){
+    var hacerDescuento = false;
+    if( calcularTotalProductosAComprar(productosDeCompra)>= 5){
+        hacerDescuento = true;
+    }
+    for(let i=0; i<productosDeCompra.length; i++){
+        if(hacerDescuento ===true){
+            var descuento= productosDeCompra[i].subTotal - (productosDeCompra[i].subTotal*0.05);
+            productosDeCompra[i].descuento= descuento;
+            var iva= productosDeCompra[i].descuento + (productosDeCompra[i].descuento* 0.13);
+            productosDeCompra[i].iva= iva;
+        }else{
+            var iva = productosDeCompra[i].subTotal + (productosDeCompra[i].subTotal*0.13);
+            productosDeCompra[i].iva= iva;
+        }
+    }
+    return productosDeCompra;
+}
+
