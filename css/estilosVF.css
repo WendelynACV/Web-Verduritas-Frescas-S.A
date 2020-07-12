@@ -67,7 +67,7 @@ header nav ul li a:hover{
     background-color: rgba(109, 201, 109, 0.527); /*Usar color en ese formato ayuda a que tenga transparencia*/
 }    
 
-#content {
+#contenedorProductos {
 width: 600px;
 padding: 10px 10px 30px 10px;
 margin: 30px auto;
@@ -76,47 +76,47 @@ border: 1px solid #999;
 }
 
 #items {
-padding-top: 10px;
+    padding-top: 10px;
 }
 
 .items {
-display: inline-block;
-text-align: center;
-width: 180px;
-margin: 0 7px 10px 7px;
-padding-top: 10px;
-border: 1px solid #999;
-border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    margin: 0 7px 10px 7px;
+    padding-top: 10px;
+    border: 1px solid #999;
+    border-radius: 20px;
 }
 
 .items img {
-width: 160px;
-height: 140px;
-border: 1px solid rgba(207, 207, 207, .7);
+    width: 160px;
+    height: 140px;
+    border: 1px solid rgba(207, 207, 207, .7);
 }
 
 .items input {
-background: #666;
-width: 80px;
-height: 26px;
-float: right;
-border-top: 1px solid #999;
-border-left: 1px solid #999;
-border-right: none;
-border-bottom: none;
-outline: none;
-cursor: pointer;
-border-bottom-right-radius: 20px;
-transition: background 0.2s ease-in;
+    background: #666;
+    width: 80px;
+    height: 26px;
+    float: right;
+    border-top: 1px solid #999;
+    border-left: 1px solid #999;
+    border-right: none;
+    border-bottom: none;
+    outline: none;
+    cursor: pointer;
+    border-bottom-right-radius: 20px;
+    transition: background 0.2s ease-in;
 }
 
 .items input:hover {
-background: #888;
+    background: #888;
 }
 
 .desc, .price, .exp, .inv {
-display: block;
-margin-bottom: 10px;
+    display: block;
+    margin-bottom: 10px;
 }
 
 /*Datos estilos para tabla de los descuentos*/
