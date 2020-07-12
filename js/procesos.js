@@ -1,10 +1,10 @@
-function miCedula(cedula){
-    var cedula= "Ingresar cedula";
-    if(cedula.length <= 12 || cedula.length >= 9){
-        
+function verificarCedula(){
+    var cedula = document.getElementById("cedula").value; /*Con document get obtengo lo que ingresa el usuario en la funcion*/
+    if(cedula.length <= 12 && cedula.length >= 9){
+        alert("Ha ingresado bien su cédula");
     }else {
-        prompt("Ha ingresado mal su cédula");
-        ingresarCedula();
+        alert("Ha ingresado mal su cédula");
+        document.getElementById("cedula").value = "";
     }
 }
 

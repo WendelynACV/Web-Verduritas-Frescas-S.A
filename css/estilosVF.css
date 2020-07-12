@@ -11,7 +11,6 @@
 body{
     background: #e6e6e6; 
     background:url(../imagenes/zanahoria.jpg);
-    background-repeat: no-repeat;
     width: 90%;
     max-width: 1000px;
 }
@@ -27,7 +26,6 @@ header div{
     background: url(../imagenes/vegetales.png);
     background-color: rgba(0, 255, 0, 0.527);
     background-repeat: no-repeat;
-    
 }
 
 header nav{
@@ -69,6 +67,118 @@ header nav ul li a:hover{
     background-color: rgba(109, 201, 109, 0.527); /*Usar color en ese formato ayuda a que tenga transparencia*/
 }    
 
+#content {
+width: 600px;
+padding: 10px 10px 30px 10px;
+margin: 30px auto;
+text-align: center;
+border: 1px solid #999;
+}
+
+#items {
+padding-top: 10px;
+}
+
+.items {
+display: inline-block;
+text-align: center;
+width: 180px;
+margin: 0 7px 10px 7px;
+padding-top: 10px;
+border: 1px solid #999;
+border-radius: 20px;
+}
+
+.items img {
+width: 160px;
+height: 140px;
+border: 1px solid rgba(207, 207, 207, .7);
+}
+
+.items input {
+background: #666;
+width: 80px;
+height: 26px;
+float: right;
+border-top: 1px solid #999;
+border-left: 1px solid #999;
+border-right: none;
+border-bottom: none;
+outline: none;
+cursor: pointer;
+border-bottom-right-radius: 20px;
+transition: background 0.2s ease-in;
+}
+
+.items input:hover {
+background: #888;
+}
+
+.desc, .price, .exp, .inv {
+display: block;
+margin-bottom: 10px;
+}
+
+/*Datos estilos para tabla de los descuentos*/
+table.blueTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+  }
+  table.blueTable tbody td {
+    font-size: 13px;
+  }
+  table.blueTable tr:nth-child(even) {
+    background: #D0E4F5;
+  }
+  table.blueTable thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+  }
+  table.blueTable thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+  }
+  table.blueTable thead th:first-child {
+    border-left: none;
+  }
+  
+  table.blueTable tfoot {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #D0E4F5;
+    background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    border-top: 2px solid #444444;
+  }
+  table.blueTable tfoot td {
+    font-size: 14px;
+  }
+  table.blueTable tfoot .links {
+    text-align: right;
+  }
+  table.blueTable tfoot .links a{
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+
+  /*El sidebar para la web*/
 aside {
     width: 30%;
     background: #ff9945;

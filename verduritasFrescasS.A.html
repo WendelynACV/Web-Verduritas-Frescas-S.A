@@ -16,7 +16,6 @@
 
 <body>
     
-
     <header>
         <div class="logoVF">
              <img src="imagenes/logoVF.png" width="100" alt="">
@@ -38,32 +37,79 @@
                 </p>
 
             </article>
-            <div class="contenedorCedula">
+            <div class="contenedorCedula" id="ingresoDeCedula"> <!--Con el id puedo desaparecer de la web lo que no quiero mostrar, según acción que se realice-->
                 <div class="toggle">
                     <span>Cliente</span>
                 </div>
-                <div class="formulario">
-                    <h3>Comprar productos</h3>
+                <div class="formulario" > 
+                    <h3>Cedula Cliente</h3>
                     <form action="#">
-                        <input type="number" placeholder="Ingresar cedula" minlength="9" maxlength="12" required>
-                        <button onclick="miCedula()">Enviar</button>
-                        <!--<input type="button" value="Ingresar"> Sirve para alguna acción con javascript -->
-                        <!-- <input type="submit" value="Enviar"> Este si va a enviar información al dar clik, no como con button-->
+                        <input id="cedula" type="number" placeholder="Ingresar cedula" minlength="9" maxlength="12" required>
+                        <button onclick="verificarCedula()">Ingresar</button>
                         <br><br>
                     </form>
                 </div>
             </div>
-            <article>
-                <p>El nombre de <b class="blue">Sergio</b>, viene del latín Sergius, y significa 'protector' o 'guardián'. 
-                <strong class="pink">El femenino de Sergio</strong>, muy poco común, es Sergina (o Sergine).
-                El nombre de <b class="blue">Sergio</b>, viene del latín Sergius, y significa 'protector' o 'guardián'. 
-                <strong class="pink">El femenino de Sergio</strong>, muy poco común, es Sergina (o Sergine).
-                El nombre de <b class="blue">Sergio</b>, viene del latín Sergius, y significa 'protector' o 'guardián'. 
-                <strong class="pink">El femenino de Sergio</strong>, muy poco común, es Sergina (o Sergine).
-                El nombre de <b class="blue">Sergio</b>, viene del latín Sergius, y significa 'protector' o 'guardián'. 
-                <strong class="pink">El femenino de Sergio</strong>, muy poco común, es Sergina (o Sergine).
-                </p>
-            </article>
+            <div id="content" style="display: none;">
+                <h1>Productos</h1>
+                <div id="items">
+                  <div id="item1" class="items">
+                    <img src="imagenes/banano.jpg"/>
+                    <span class="id">1234</span>
+                    <span class="desc">Description</span>
+                    <span class="price">$100</span>
+                    <span class="inv">10</span> 
+                    <span class="exp">3/5/2020</span>
+                    <input type="number"/>     
+                  </div>
+                  <div id="item2" class="items">
+                    <img src="imagenes/ayote.jpg"/>
+                    <span class="id">1234</span>
+                    <span class="desc">Description</span>
+                    <span class="price">$100</span>
+                    <span class="inv">10</span> 
+                    <span class="exp">3/5/2020</span>
+                    <input type="number"/>     
+                  </div>
+                </div>
+            </div> 
+            <br>
+
+            <div id="tablaProductosAComprar" style="display: none;">
+                <table class="blueTable">
+                    <thead>
+                      <tr>
+                        <th>Cantidad</th>
+                        <th>Description</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                        <th>Descuento</th>
+                        <th>13% IVA</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>cell1_1</td>
+                        <td>cell2_1</td>
+                        <td>cell3_1</td>
+                        <td>cell4_1</td>
+                        <td>cell4_1</td>
+                        <td>cell5_1</td>
+                      </tr>
+                      <tr>
+                        <td>cell1_2</td>
+                        <td>cell2_2</td>
+                        <td>cell3_2</td>
+                        <td>cell4_2</td>
+                        <td>cell5_2</td>
+                        <td>cell6_2</td>
+                      </tr>
+                    </tbody>
+                </table>
+                <br><br>
+            </div>
+            
+
         </section>
         <aside>
             <h3>Mi sidebar</h3>
@@ -76,13 +122,7 @@
         <p>Wendelyn Cordero</p>
     </footer>
 
-    <script>
-        
-        
-        src ="procesos.js"
-        
-    
-    </script>
+    <script src ="js/procesos.js"></script>
 
         
 </body>    
