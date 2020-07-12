@@ -7,7 +7,8 @@ function verificarCedula(){
         desplegarProductos();
         document.getElementById("contenedorProductos").style.display = "inline";
     }else {
-        alert("Ha ingresado mal su cédula");
+        alert("Cédula con formato inválido");
+        document.getElementById("cedula").style.borderColor = "red";
         document.getElementById("cedula").value = "";
     }
 }
@@ -98,35 +99,12 @@ function validarInventario(evento){
     var cantidadAComprar = evento.value; /*Extrae el valor actual que posee el input*/
     
     if(cantidadInventario < cantidadAComprar){
+        evento.style.borderColor = "red"; /* */
         alert("No contamos con la cantidad del producto que requiere");
         evento.value="";
-    }    
-}
-
-/*Creación de la tabla del resumen para el cliente*/
-function actualizarResumenDePedido(productosAComprar){
-    var productos = "";
-    var descuento=false;
-    productosAComprar.forEach(producto =>{
-        if(producto.descuento != 0){
-            productos+= '<tr><td>'+producto.cantidad+'</td><td>'+producto.descripcion+'</td><td>'+producto.precio+'</td><td>'+producto.subTotal+'</td><td style= "color: #18AF24">'+producto.descuento+'</td><td style= "color: green">'+producto.iva+'</td></tr>';
-            descuento= true;
-        }else{
-            productos+= '<tr><td>'+producto.cantidad+'</td><td>'+producto.descripcion+'</td><td>'+producto.precio+'</td><td>'+producto.subTotal+'</td><td style= "color: #29A6F8">'+producto.descuento+'</td><td style= "color: #29A6F8 ">'+producto.iva+'</td></tr>';
-        }
-
-    }); 
-    if(descuento === true){
-        productos +='<tr><td>Total</td><td></td><td></td><td></td><td></td><td style= "color: #18AF24">'+costoTotal+'</td></tr>';
-    }else{
-        productos +='<tr><td>Total</td><td></td><td></td><td></td><td></td><td style= "color: #29A6F8">'+costoTotal+'</td></tr>';
-    }
-    document.getElementById("datos").innerHTML = productos;
-
-}
-
-function enviarPedido(){
-    alert("El pedido por el monto de "+costoTotal+" ha sido enviado");
+    } else{
+        evento.style.borderColor = "gray";
+    }   
 }
 
 function desplegarProductosSeleccionados(){ 
@@ -138,14 +116,11 @@ function desplegarProductosSeleccionados(){
         var cantidadAComprar= parseInt(productos[i].querySelector("input").value);
         /*En el if colocamos la cantidadAComprar sola significa que la variable este defina, si uso cantidadAComprar!=NaN, != NAN, es que sea diferente de indefinido, que viene siendo lo mismo*/
         if(cantidadAComprar  && cantidadAComprar>0){ 
-            descripcion= productos[i].querySelector(".desc").innerHTML;
+            descripcion= productos[i].querySelector(".desc").innerHTML; /*Con el selector innerHTML extraigo*/
             precio= parseInt(productos[i].querySelector(".price").innerHTML);
             productosAComprar.push({cantidad:cantidadAComprar, descripcion: descripcion, precio: precio, subTotal:(precio*cantidadAComprar), descuento: 0, iva:0});
         }
     }
-
-    console.log(productosAComprar);
-    console.log(calcularIvaYDescuento(productosAComprar));
     
     if(calcularTotalProductosAComprar(productosAComprar) === 0) {
         alert("No ha especificado ninguna cantidad de producto a comprar");
@@ -171,7 +146,6 @@ function calcularTotalProductosAComprar(cantidadProductosAComprar){
     for(let i=0; i<cantidadProductosAComprar.length; i++){
         cantidadAComprarTotal += cantidadProductosAComprar[i].cantidad;  
     }
-    console.log(cantidadAComprarTotal);
     return cantidadAComprarTotal;
 }
 
@@ -194,3 +168,28 @@ function calcularIvaYDescuento(productosDeCompra){
     return productosDeCompra;
 }
 
+/*Creación de la tabla del resumen para el cliente luego de dar click al boton de visualizar pedido*/
+function actualizarResumenDePedido(productosAComprar){
+    var productos = "";
+    var descuento=false;
+    productosAComprar.forEach(producto =>{
+        if(producto.descuento != 0){
+            productos+= '<tr><td>'+producto.cantidad+'</td><td>'+producto.descripcion+'</td><td>'+producto.precio+'</td><td>'+producto.subTotal+'</td><td style= "color: #18AF24">'+producto.descuento+'</td><td style= "color: green">'+producto.iva+'</td></tr>';
+            descuento= true;
+        }else{
+            productos+= '<tr><td>'+producto.cantidad+'</td><td>'+producto.descripcion+'</td><td>'+producto.precio+'</td><td>'+producto.subTotal+'</td><td style= "color: #29A6F8">'+producto.descuento+'</td><td style= "color: #29A6F8 ">'+producto.iva+'</td></tr>';
+        }
+
+    }); 
+    if(descuento === true){
+        productos +='<tr><td>Total</td><td></td><td></td><td></td><td></td><td style= "color: #18AF24">'+costoTotal+'</td></tr>';
+    }else{
+        productos +='<tr><td>Total</td><td></td><td></td><td></td><td></td><td style= "color: #29A6F8">'+costoTotal+'</td></tr>';
+    }
+    document.getElementById("datos").innerHTML = productos;
+
+}
+
+function enviarPedido(){
+    alert("El pedido por el monto de "+costoTotal+" ha sido enviado");
+}
