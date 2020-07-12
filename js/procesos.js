@@ -106,18 +106,27 @@ function validarInventario(evento){
 /*Creación de la tabla del resumen para el cliente*/
 function actualizarResumenDePedido(productosAComprar){
     var productos = "";
+    var descuento=false;
     productosAComprar.forEach(producto =>{
-        productos+= '<tr><td>'+producto.cantidad+'</td><td>'+producto.descripcion+'</td><td>'+producto.precio+'</td><td>'+producto.subTotal+'</td><td>'+producto.descuento+'</td><td>'+producto.iva+'</td></tr>';
-    });
+        if(producto.descuento != 0){
+            productos+= '<tr><td>'+producto.cantidad+'</td><td>'+producto.descripcion+'</td><td>'+producto.precio+'</td><td>'+producto.subTotal+'</td><td style= "color: #18AF24">'+producto.descuento+'</td><td style= "color: green">'+producto.iva+'</td></tr>';
+            descuento= true;
+        }else{
+            productos+= '<tr><td>'+producto.cantidad+'</td><td>'+producto.descripcion+'</td><td>'+producto.precio+'</td><td>'+producto.subTotal+'</td><td style= "color: #29A6F8">'+producto.descuento+'</td><td style= "color: #29A6F8 ">'+producto.iva+'</td></tr>';
+        }
 
-    productos +='<tr><td>Total</td><td></td><td></td><td></td><td></td><td>'+costoTotal+'</td></tr>';
-
+    }); 
+    if(descuento === true){
+        productos +='<tr><td>Total</td><td></td><td></td><td></td><td></td><td style= "color: #18AF24">'+costoTotal+'</td></tr>';
+    }else{
+        productos +='<tr><td>Total</td><td></td><td></td><td></td><td></td><td style= "color: #29A6F8">'+costoTotal+'</td></tr>';
+    }
     document.getElementById("datos").innerHTML = productos;
 
 }
 
 function enviarPedido(){
-    alert("El pedido por el monto de"+costoTotal+" ha sido enviado");
+    alert("El pedido por el monto de "+costoTotal+" ha sido enviado");
 }
 
 function desplegarProductosSeleccionados(){ 
