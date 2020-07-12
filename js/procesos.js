@@ -40,7 +40,7 @@ var productosVF =[
         idDelProducto: 8,  imagen: "imagenes/chayote.png", descripcion: "Chayote", costoUnidad:100, cantidadEnInventario:5,
         fechaDeExpiracion:"20/07/2020" 
     },{
-        idDelProducto: 9,  imagen: "imagenes/lemon.jpg", descripcion: "Limón", costoUnidad:50, cantidadEnInventario:25,
+        idDelProducto: 9,  imagen: "imagenes/limones.jpg", descripcion: "Limón", costoUnidad:50, cantidadEnInventario:25,
         fechaDeExpiracion:"25/07/2020" 
     },{
         idDelProducto: 10,  imagen: "imagenes/manga.jpg", descripcion: "Manga", costoUnidad:150, cantidadEnInventario:8,
